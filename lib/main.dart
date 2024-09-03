@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
 import 'loading_app/loading_app.dart';
-import 'loading_app/loading_app_data.dart';
+import 'loading_app/permission_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LoadingApp(),
+      home: const LoadingApp(), //PermissionHandlerWidget()
     );
   }
 }
