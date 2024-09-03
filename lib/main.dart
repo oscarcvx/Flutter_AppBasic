@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'home_page.dart';
 import 'loading_app/loading_app.dart';
 import 'loading_app/permission_app.dart';
 
@@ -34,7 +35,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoadingApp(), //PermissionHandlerWidget()
+      home: const LoadingApp(
+        widget: HomePage(title: "Esto es una prueba"),
+      ), //PermissionHandlerWidget()
     );
   }
 }

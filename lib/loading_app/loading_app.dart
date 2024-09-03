@@ -1,4 +1,3 @@
-import 'package:basic_app/home_page.dart';
 import 'package:basic_app/loading_app/loading_app_error.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +5,10 @@ import 'loading_app_data.dart';
 import 'loading_app_spinner.dart';
 
 class LoadingApp extends StatefulWidget{
-  const LoadingApp({super.key});
+
+  const LoadingApp({super.key,required this.widget});
+
+  final Widget widget;
 
   @override
   State<LoadingApp> createState() => _LoadingAppState();
@@ -21,7 +23,7 @@ class _LoadingAppState extends State<LoadingApp> {
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         if (snapshot.hasData) {
           print("Home Cargado");
-           return const HomePage(title: "Esto es una prueba");
+           return widget.widget;
         } else if (snapshot.hasError) {
           print("Ha ocurrido un error");
            return LoadingAppError(mensaje: "${snapshot.error}");
