@@ -1,3 +1,5 @@
+import 'package:basic_app/UndefinedView.dart';
+import 'package:basic_app/route_gen/go_route.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -76,6 +78,52 @@ class _HomePageState extends State<HomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+
+            IconButton(
+              icon: Icon(Icons.message_outlined,size: 50,color: Colors.indigo),
+              iconSize: 58.0,
+              onPressed: () {
+                GoRoute(context).to(const UndefinedView(),routeEffect: RouteEffect.CupertinoDefault);
+              },
+            ),
+
+
+            IconButton(
+              icon: Icon(Icons.message_outlined,size: 50,color: Colors.indigo),
+              iconSize: 58.0,
+              onPressed: () {
+                GoRoute(context).to(const UndefinedView(),routeEffect: RouteEffect.MaterialDefault);
+              },
+            ),
+
+
+            IconButton(
+              icon: Icon(Icons.message_outlined,size: 50,color: Colors.indigo),
+              iconSize: 58.0,
+              onPressed: () {
+                GoRoute(context).to(const UndefinedView(),routeEffect: RouteEffect.Rotation);
+              },
+            ),
+
+            IconButton(
+              icon: Icon(Icons.message_outlined,size: 50,color: Colors.indigo),
+              iconSize: 58.0,
+              onPressed: () {
+                GoRoute(context).to(const UndefinedView(),routeEffect: RouteEffect.Scale);
+              },
+            ),
+
+            IconButton(
+              icon: Icon(Icons.message_outlined,size: 50,color: Colors.indigo),
+              iconSize: 58.0,
+              onPressed: () {
+                GoRoute(context).to(const UndefinedView(),routeEffect: RouteEffect.Fade);
+              },
+            ),
+
+
+
+
           ],
         ),
       ),

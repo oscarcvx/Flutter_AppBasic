@@ -14,7 +14,7 @@ class LoadinAppData {
 
     print("Cargado");
 
-    throw "Esto es un error de prueba";
+    //throw "Esto es un error de prueba";
     return true;
   }
 
