@@ -1,14 +1,14 @@
-import 'package:basic_app/home_page.dart';
+import 'package:basic_app/routes/home_page.dart';
 import 'package:basic_app/route_gen/go_route.dart';
 import 'package:flutter/material.dart';
 
-class UndefinedView extends StatelessWidget {
-  final String? name;
+class ErrorView extends StatelessWidget {
+  final String mensaje;
 
-  const UndefinedView({
-    Key? key,
-    this.name
-  }) : super(key: key);
+  const ErrorView({
+    super.key,
+    required this.mensaje
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,9 @@ class UndefinedView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Route para $name no esta definida'),
+            Text('Ha ocurrido un problema'),
+
+            Text('"$mensaje"'),
 
             IconButton(
               icon: Icon(Icons.message_outlined,size: 50,color: Colors.indigo),

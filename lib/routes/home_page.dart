@@ -1,5 +1,6 @@
-import 'package:basic_app/UndefinedView.dart';
+import 'package:basic_app/routes/error_view.dart';
 import 'package:basic_app/route_gen/go_route.dart';
+import 'package:basic_app/utiles/show_msg.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -83,7 +84,7 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.message_outlined,size: 50,color: Colors.indigo),
               iconSize: 58.0,
               onPressed: () {
-                GoRoute(context).to(const UndefinedView(),routeEffect: RouteEffect.CupertinoDefault);
+                GoRoute(context).to(const ErrorView(mensaje: ''),routeEffect: RouteEffect.CupertinoDefault);
               },
             ),
 
@@ -92,7 +93,7 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.message_outlined,size: 50,color: Colors.indigo),
               iconSize: 58.0,
               onPressed: () {
-                GoRoute(context).to(const UndefinedView(),routeEffect: RouteEffect.MaterialDefault);
+                GoRoute(context).to(const ErrorView(mensaje: ''),routeEffect: RouteEffect.MaterialDefault);
               },
             ),
 
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.message_outlined,size: 50,color: Colors.indigo),
               iconSize: 58.0,
               onPressed: () {
-                GoRoute(context).to(const UndefinedView(),routeEffect: RouteEffect.Rotation);
+                GoRoute(context).to(const ErrorView(mensaje: ''),routeEffect: RouteEffect.Rotation);
               },
             ),
 
@@ -109,7 +110,7 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.message_outlined,size: 50,color: Colors.indigo),
               iconSize: 58.0,
               onPressed: () {
-                GoRoute(context).to(const UndefinedView(),routeEffect: RouteEffect.Scale);
+                GoRoute(context).to(const ErrorView(mensaje: ''),routeEffect: RouteEffect.Scale);
               },
             ),
 
@@ -117,10 +118,39 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.message_outlined,size: 50,color: Colors.indigo),
               iconSize: 58.0,
               onPressed: () {
-                GoRoute(context).to(const UndefinedView(),routeEffect: RouteEffect.Fade);
+                GoRoute(context).to(const ErrorView(mensaje: ''),routeEffect: RouteEffect.Fade);
               },
             ),
 
+            Row(
+              children: [
+                Text("Mensaje danger"),
+
+                IconButton(
+                  icon: Icon(Icons.message_outlined,size: 50,color: Colors.indigo),
+                  iconSize: 58.0,
+                  onPressed: () {
+                    ShowMsg(context).showAlert("titulo", "mensaje",alertType: AlertType.danger);
+                  },
+                ),
+
+              ],
+            ),
+
+            Row(
+              children: [
+                Text("Mensaje success"),
+
+                IconButton(
+                  icon: Icon(Icons.message_outlined,size: 50,color: Colors.indigo),
+                  iconSize: 58.0,
+                  onPressed: () {
+                    ShowMsg(context).showConfirm("titulo", "mensaje",alertType: AlertType.success);
+                  },
+                ),
+
+              ],
+            ),
 
 
 

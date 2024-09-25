@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import 'home_page.dart';
+import 'routes/home_page.dart';
 import 'loading_app/loading_app.dart';
 import 'loading_app/permission_app.dart';
 
@@ -33,10 +34,11 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        fontFamily: GoogleFonts.roboto().debugLabel,
         useMaterial3: true,
       ),
       home: const LoadingApp(
-        widget: HomePage(title: "Esto es una prueba"),
+        page: HomePage(title: "Esto es una prueba"),
       ), //PermissionHandlerWidget()
     );
   }

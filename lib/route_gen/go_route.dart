@@ -18,38 +18,44 @@ enum RouteEffect {
   CupertinoDefault
 }
 
-/*enum ReplaceType {
-  Replace,
-  EndSession,
-  BackAndRefresh,
-  CloseAll,
-  Push,
-  BackTo
-}*/
 
 
-
+///
+///
+///
 class GoRoute{
 
   GoRoute(this.context);
 
   final BuildContext context;
 
-
-  var result;
-
+  //Avanza a la pagina siguiente
+  ///
+  /// Coloca en la pila la nueva pagina
   Future to( Widget route, {Object? args, RouteEffect routeEffect = RouteEffect.MaterialDefault}) async {
     final RouteArguments vArgs = RouteArguments(context,args,routeEffect: routeEffect);
     final RouteSettings settings = RouteSettings(arguments: vArgs);
-    await Navigator.push(
-      context,
-      _generateRoute(settings,route),
-    );
+    await Navigator.push(context,_generateRoute(settings,route));
   }
 
+  //Retrocede la pagina
+  ///
+  ///  Quita de la pila la pagina actual para acceder a la anterior
   Future back() async {
       Navigator.of(context).pop();
   }
+
+  //Retrocede a una pagina especifica
+  ///
+  /// Cierra todas las ventanas y direcciona a la nueva pagina
+  /// "/" : pagina anterior (2 elementos en la lista inicio y pagina nueva)
+  Future backTo(Widget route,{Object? args, RouteEffect routeEffect = RouteEffect.MaterialDefault}) async {
+    final RouteArguments vArgs = RouteArguments(context,args,routeEffect: routeEffect);
+    final RouteSettings settings = RouteSettings(arguments: vArgs);
+    await Navigator.pushAndRemoveUntil(context, _generateRoute(settings,route), (route) => false);
+  }
+
+
 
   /*Future backTo(Widget route, {Object? args, RouteEffect routeEffect = RouteEffect.MaterialDefault}) async {
     final RouteArguments vArgs = RouteArguments(context,args,routeEffect: routeEffect);
@@ -61,65 +67,56 @@ class GoRoute{
   }*/
 
 
-  Future backTo(Widget route,{Object? args, RouteEffect routeEffect = RouteEffect.MaterialDefault}) async {
-    //-- Cierra todas las ventanas y direcciona a la nueva pagina route_ pagina nueva , "/" : pagina anterior (2 elementos en la lista inicio y pagina nueva)
-    final RouteArguments vArgs = RouteArguments(context,args,routeEffect: routeEffect);
-    final RouteSettings settings = RouteSettings(arguments: vArgs);
-    await Navigator.pushAndRemoveUntil(context, _generateRoute(settings,route), (route) => false);
-  }
 
 
 /*
-  Future<Object?> to(BuildContext context, String route, ReplaceType replacement, {Object? args, RouteEffect routeEffect = RouteEffect.MaterialDefault}) async {
-    var result;
-    if (kDebugMode) {
-      print("routeGo $replacement --> " + args.toString());
-    }
+Future<Object?> routeGo(BuildContext context, String route, replaceType replacement, {Object? args, RouteType routeType = RouteType.MaterialDefault,String tituloWeb=""}) async {
+   var result;
+  if (kDebugMode) {
+    print("routeGo $replacement --> " + args.toString());
+  }
 
-    switch (replacement) {
-      case ReplaceType.BackAndRefresh:
-
-,
-
+  switch (replacement) {
+    case replaceType.BackAndRefresh:
       //Cierra la ruta actual y vualve a la ruta anterior refrescando los cambios
-        result = await Navigator.of(context).popUntil()route, arguments: RouteArguments(context, args, routeEffect: routeEffect));
-        break;
+      result = await Navigator.of(context).popAndPushNamed(route, arguments: RouteArguments(context, args, routeType: routeType,tituloWeb: tituloWeb));
+      break;
 
-      case ReplaceType.EndSession:
+    case replaceType.EndSession:
       //-- Cierra todas las ventanas y lleva a la pagina de inicio (cerrar session)
       //globals.user = UsuarioInfo.from();
-        result = await Navigator.pushNamedAndRemoveUntil(context, route, (route) => false, arguments: RouteArguments(context, args, routeEffect: routeEffect));
-        //Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false, arguments: RouteArguments(context, args, routetype: routetype,tituloWeb: tituloWeb));
-        break;
+      result = await Navigator.pushNamedAndRemoveUntil(context, route, (route) => false, arguments: RouteArguments(context, args, routeType: routeType,tituloWeb: tituloWeb));
+      //Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false, arguments: RouteArguments(context, args, routetype: routetype,tituloWeb: tituloWeb));
+      break;
 
-      case ReplaceType.BackTo:
+    case replaceType.BackTo:
       //elimina todas las rutas cargadas hasta llegar a la ruta indicada que existe entre las rutas cargadas ej: r1, r2 ,r3 ,r4 -- popUntil r2 (elimina r3 y r4)
-        Navigator.popUntil(context, ModalRoute.withName(route));
-        break;
+      Navigator.popUntil(context, ModalRoute.withName(route));
+      break;
 
-      case ReplaceType.CloseAll:
+    case replaceType.CloseAll:
       //-- Cierra todas las ventanas y direcciona a la nueva pagina route_ pagina nueva , "/" : pagina anterior (2 elementos en la lista inicio y pagina nueva)
-        result = await Navigator.pushNamedAndRemoveUntil(context, route, (route) => false, arguments: RouteArguments(context, args, routeEffect: routeEffect));
-        //Push de screen 4 y mantiene screen 1 (las demas rutas se eliminan , se eliminan todas las rutas hasta screen 1)
-        //ej : Navigator.of(context).pushNamedAndRemoveUntil('/screen4', ModalRoute.withName('/screen1'));
-        break;
+      result = await Navigator.pushNamedAndRemoveUntil(context, route, (route) => false, arguments: RouteArguments(context, args, routeType: routeType,tituloWeb: tituloWeb));
+      //Push de screen 4 y mantiene screen 1 (las demas rutas se eliminan , se eliminan todas las rutas hasta screen 1)
+      //ej : Navigator.of(context).pushNamedAndRemoveUntil('/screen4', ModalRoute.withName('/screen1'));
+      break;
 
-      case ReplaceType.Replace:
-        Navigator.of(context).popUntil((route) => route.isFirst);
-        result = await Navigator.of(context).pushReplacementNamed(route, arguments: RouteArguments(context, args, routeEffect: routeEffect));
-        break;
+    case replaceType.Replace:
+      Navigator.of(context).popUntil((route) => route.isFirst);
+      result = await Navigator.of(context).pushReplacementNamed(route, arguments: RouteArguments(context, args, routeType: routeType,tituloWeb: tituloWeb));
+      break;
 
-      case ReplaceType.Push:
-        result = await Navigator.of(context).restorablePush( ,arguments: RouteArguments(context, args, routeEffect: routeEffect));
-        break;
+    case replaceType.Push:
+      result = await Navigator.of(context).pushNamed(route, arguments: RouteArguments(context, args, routeType: routeType,tituloWeb: tituloWeb));
+      break;
 
-      default:
-        result = await Navigator.of(context).pushNamed(route, arguments: RouteArguments(context, args, routeEffect: routeEffect));
-        break;
-    }
-    //print("Resultado : ${result}");
-    return result;
+    default:
+      result = await Navigator.of(context).pushNamed(route, arguments: RouteArguments(context, args, routeType: routeType,tituloWeb: tituloWeb));
+      break;
   }
+  //print("Resultado : ${result}");
+  return result;
+}
 
 
 */
@@ -137,7 +134,6 @@ PageRoute _generateRoute(RouteSettings settings,Widget route) {
 class RouteArguments {
   Object? arguments;
   RouteArguments(this.context, this.arguments, {this.routeEffect = RouteEffect.MaterialDefault});
-
   final RouteEffect routeEffect;
   final BuildContext context;
 }
@@ -193,6 +189,10 @@ PageRoute _buildRoute(BuildContext context, Widget route, RouteArguments args, {
   return pr;
 }
 
+
+///
+/// Transition Effects
+///
 
 
 class _ScaleRoute extends PageRouteBuilder {

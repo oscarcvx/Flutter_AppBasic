@@ -6,9 +6,9 @@ import 'loading_app_spinner.dart';
 
 class LoadingApp extends StatefulWidget{
 
-  const LoadingApp({super.key,required this.widget});
+  const LoadingApp({super.key,required this.page});
 
-  final Widget widget;
+  final Widget page;
 
   @override
   State<LoadingApp> createState() => _LoadingAppState();
@@ -23,7 +23,7 @@ class _LoadingAppState extends State<LoadingApp> {
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         if (snapshot.hasData) {
           print("Home Cargado");
-           return widget.widget;
+           return widget.page;
         } else if (snapshot.hasError) {
           print("Ha ocurrido un error");
            return LoadingAppError(mensaje: "${snapshot.error}");
