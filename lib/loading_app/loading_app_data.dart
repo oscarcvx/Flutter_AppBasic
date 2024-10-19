@@ -10,7 +10,7 @@ class LoadinAppData {
 
     print("Cargando..");
 
-    await Future.delayed(Duration(seconds: 5));
+    //await Future.delayed(Duration(seconds: 5));
 
     print("Cargado");
 

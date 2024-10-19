@@ -1,3 +1,4 @@
+import 'package:basic_app/routes/login_pass.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -33,12 +34,13 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: Color.fromARGB(255,33, 36, 41),
+        //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         fontFamily: GoogleFonts.roboto().debugLabel,
         useMaterial3: true,
       ),
       home: const LoadingApp(
-        page: HomePage(title: "Esto es una prueba"),
+        page: LoginPass(title: "Esto es una prueba"),
       ), //PermissionHandlerWidget()
     );
   }
