@@ -1,14 +1,21 @@
 import 'package:basic_app/routes/login_pass.dart';
+import 'package:basic_app/routes/services/audio_player_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import 'routes/home_page.dart';
 import 'loading_app/loading_app.dart';
 import 'loading_app/permission_app.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(
+  MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => AudioPlayerService()),
+    ],
+    child: MyApp(),
+  ),
+);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

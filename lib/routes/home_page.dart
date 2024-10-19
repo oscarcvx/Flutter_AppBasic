@@ -3,6 +3,8 @@ import 'package:basic_app/route_gen/go_route.dart';
 import 'package:basic_app/utiles/show_msg.dart';
 import 'package:flutter/material.dart';
 
+import 'components/music_player_footer.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
 
@@ -371,7 +373,7 @@ class _HomePageState extends State<HomePage> {
 
 }
 
-
+/*
 class MusicPlayerFooter extends StatefulWidget {
   @override
   _MusicPlayerFooterState createState() => _MusicPlayerFooterState();
@@ -472,4 +474,4 @@ class _MusicPlayerFooterState extends State<MusicPlayerFooter> {
       ),
     );
   }
-}
+}*/

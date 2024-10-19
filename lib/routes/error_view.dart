@@ -2,6 +2,8 @@ import 'package:basic_app/routes/home_page.dart';
 import 'package:basic_app/route_gen/go_route.dart';
 import 'package:flutter/material.dart';
 
+import 'components/music_player_footer.dart';
+
 class ErrorView extends StatelessWidget {
   final String mensaje;
 
@@ -13,6 +15,7 @@ class ErrorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: MusicPlayerFooter(),
       backgroundColor: Colors.amber,
       body: Center(
         child: Column(
