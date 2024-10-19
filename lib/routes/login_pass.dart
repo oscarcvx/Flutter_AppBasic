@@ -139,7 +139,7 @@ class _LoginPassState extends State<LoginPass> {
                       const SizedBox(height: 20),
                       InkWell(
                           onTap: () {
-                            GoRoute(context).to(const HomePage(title: "TEST",),routeEffect: RouteEffect.Fade);
+                            GoRoute(context).backTo(const HomePage(title: "TEST",),routeEffect: RouteEffect.Fade);
                           },
                           child: _submitButton()
                       ),

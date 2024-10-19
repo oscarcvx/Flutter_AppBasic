@@ -56,6 +56,11 @@ class GoRoute{
   }
 
 
+  Future backTo2(Widget route,{Object? args, RouteEffect routeEffect = RouteEffect.MaterialDefault}) async {
+    final RouteArguments vArgs = RouteArguments(context,args,routeEffect: routeEffect);
+    final RouteSettings settings = RouteSettings(arguments: vArgs);
+    await Navigator.pushReplacement(context, _generateRoute(settings,route));
+  }
 
   /*Future backTo(Widget route, {Object? args, RouteEffect routeEffect = RouteEffect.MaterialDefault}) async {
     final RouteArguments vArgs = RouteArguments(context,args,routeEffect: routeEffect);
