@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   just_audio: ^0.9.41
   provider: ^6.0.1
+  palette_generator: ^0.3.0
 
   permission_handler: ^11.3.1
   google_fonts: ^6.2.1
@@ -70,6 +71,7 @@ flutter:
     - assets/logos/appraise_horizontal_blanco.png
     - assets/logos/rockr.png
     - assets/audio/5-MB-MP3.mp3
+    - assets/logos/car01.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

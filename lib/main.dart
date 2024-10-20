@@ -1,22 +1,92 @@
+import 'package:basic_app/routes/album_sreen.dart';
 import 'package:basic_app/routes/login_pass.dart';
-import 'package:basic_app/routes/services/audio_player_service.dart';
+import 'package:basic_app/services/audio_player_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'routes/home_page.dart';
 import 'loading_app/loading_app.dart';
-import 'loading_app/permission_app.dart';
 
-void main() => runApp(
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+/*void main() =>  runApp(
   MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => AudioPlayerService()),
     ],
     child: MyApp(),
   ),
-);
 
+);*/
+
+void main() {
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AudioPlayerService()),
+      ],
+      child: MyApp(),
+    ),
+  );
+
+// Restore state from local storage
+  /*var currentState = getState('currentPage') ?? '/';
+  navigateTo(MyApp(), currentState);*/
+
+  /*html.window.onPopState.listen((event) {
+    if (navigatorKey.currentState!.canPop()) {
+      navigatorKey.currentState!.pop();
+    } else {
+      html.window.history.back();
+    }
+  });*/
+
+/*
+// Handle browser back and forward buttons
+  html.window.onPopState.listen((event) {
+    if (navigatorKey.currentState!.canPop()) {
+      navigatorKey.currentState!.pop();
+    } else {
+      html.window.history.back();
+    }
+  });
+
+  html.window.onBeforeUnload.listen((event) {
+    //event = 'Are you sure you want to leave this page?';
+  });*/
+
+}
+/*
+void saveState(String key, String value) {
+  html.window.localStorage[key] = value;
+}
+
+String? getState(String key) {
+  return html.window.localStorage[key];
+}
+*/
+/*
+void navigateTo(Widget page, String path, {Map<String, String>? params}) {
+  var url = path;
+  if (params != null && params.isNotEmpty) {
+    var queryParams = params.entries.map((e) => '${e.key}=${e.value}').join('&');
+    url = '$path?$queryParams';
+  }
+  html.window.history.pushState(null, '', url);
+  navigatorKey.currentState!.push(MaterialPageRoute(builder: (context) => page));
+}*/
+/*
+void navigateTo(Widget page, String path) {
+  html.window.history.pushState(null, '', path);
+  navigatorKey.currentState!.push(MaterialPageRoute(builder: (context) => page));
+}*/
+/*
+void navigateTo(Widget page, String path) {
+  saveState('currentPage', path);
+  html.window.history.pushState(null, '', path);
+  navigatorKey.currentState!.push(MaterialPageRoute(builder: (context) => page));
+}
+*/
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -24,6 +94,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -46,11 +117,43 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.roboto().debugLabel,
         useMaterial3: true,
       ),
-      home: const LoadingApp(
-        page: LoginPass(title: "Esto es una prueba"),
-      ), //PermissionHandlerWidget()
+      home: Center(
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.5,
+            child: const LoadingApp(
+              page: LoginPass(title: "Esto es una prueba"),
+            ),
+          ),
+        ),
+     //initialRoute: RoutesConfig.login,
+     //routes: RoutesConfig().buildRoutes(context),
+     //onGenerateRoute: _generateRoute,
+      onGenerateRoute: _generateRoute,
     );
   }
+
+
+  Route<dynamic> _generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case '/login':
+        return MaterialPageRoute(builder: (context) => LoginPass(title: "title"));
+      case '/album':
+        return MaterialPageRoute(builder: (context) => AlbumScreen());
+      default:
+        return MaterialPageRoute(builder: (context) => LoginPass(title: "title"));
+    }
+  }
+
+/*
+  void navigateTo(Widget page, String path) {
+    html.window.history.pushState(null, '', path);
+    navigatorKey.currentState!.push(MaterialPageRoute(builder: (context) => page));
+  }
+*/
+
+
+
 }
+
 
 

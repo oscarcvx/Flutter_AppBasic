@@ -75,43 +75,43 @@ class AppRoutes {
   //static const String LicenciaEstadoPagoViewRoute = 'LicenciaEstadoPago';
  // static const String LicenciaEstadoPlanPagoViewRoute = 'LicenciaEstadoPlanPago';
 
-  Map<String, Widget Function(BuildContext)> build(BuildContext context) {
-    return {
-      HomeViewRoute: (context) => HomePage(),
-      LoginViewRoute: (context) => Login(),
-      LicenciasViewRoute: (context) => Licencias(),
-      CreditosViewRoute: (context) => Creditos(),
-      CreditosMenuViewRoute: (context) => CreditosMenu(),
-      SucursalesViewRoute: (context) => SucursalesMap(),
-      ContactoViewRoute: (context) => Contacto(),
-      MisDatosViewRoute: (context) => MisDatos(),
-      DatosPersonalesViewRoute: (context) => DatosPersonales(),
-      MiCuentaBancariaViewRoute: (context) => MiCuentaBancaria(),
-      CreditoDetailViewRoute: (context) => CreditoDetalle(),
-      LicenciaDetailViewRoute: (context) => LicenciaDetalle(),
-      DetalleMensajeViewRoute: (context) => DetalleMensaje(),
-      SimuladorCreditoViewRoute: (context) => Simulador(),
-      SimuladorCreditoDetalleViewRoute: (context) => SimuladorDetalle(),
-      BandejaMensajesViewRoute: (context) => BandejaMensajes(),
-      Puntos18ViewRoute: (context) => BandejaMensajes(),
-      DevolucionesViewRoute: (context) => Devoluciones(),
-      LoginRegisteredViewRoute : (context) => LoginRegistered(),
-      LeasingDetailViewRoute : (context) => LeasingDetalle(),
-      LeasingViewRoute : (context) => Leasing(),
-      LicenciaListadoPagosViewRoute : (context) => PagosListado(),
+    Map<String, Widget Function(BuildContext)> build(BuildContext context) {
+      return {
+        HomeViewRoute: (context) => HomePage(),
+        LoginViewRoute: (context) => Login(),
+        LicenciasViewRoute: (context) => Licencias(),
+        CreditosViewRoute: (context) => Creditos(),
+        CreditosMenuViewRoute: (context) => CreditosMenu(),
+        SucursalesViewRoute: (context) => SucursalesMap(),
+        ContactoViewRoute: (context) => Contacto(),
+        MisDatosViewRoute: (context) => MisDatos(),
+        DatosPersonalesViewRoute: (context) => DatosPersonales(),
+        MiCuentaBancariaViewRoute: (context) => MiCuentaBancaria(),
+        CreditoDetailViewRoute: (context) => CreditoDetalle(),
+        LicenciaDetailViewRoute: (context) => LicenciaDetalle(),
+        DetalleMensajeViewRoute: (context) => DetalleMensaje(),|
+        SimuladorCreditoViewRoute: (context) => Simulador(),
+        SimuladorCreditoDetalleViewRoute: (context) => SimuladorDetalle(),
+        BandejaMensajesViewRoute: (context) => BandejaMensajes(),
+        Puntos18ViewRoute: (context) => BandejaMensajes(),
+        DevolucionesViewRoute: (context) => Devoluciones(),
+        LoginRegisteredViewRoute : (context) => LoginRegistered(),
+        LeasingDetailViewRoute : (context) => LeasingDetalle(),
+        LeasingViewRoute : (context) => Leasing(),
+        LicenciaListadoPagosViewRoute : (context) => PagosListado(),
 
-      LicenciaDetailPagosViewRoute : (context) => EstadoPago(),
-      LicenciaDetailPlanPagoViewRoute : (context) => EstadoPlanPago(),
+        LicenciaDetailPagosViewRoute : (context) => EstadoPago(),
+        LicenciaDetailPlanPagoViewRoute : (context) => EstadoPlanPago(),
 
-      NoPermitidoViewRoute : (context) => NoPermitido(),
-      CargarDocLicenciasViewRoute : (context) => CargarDocLicencias(),
+        NoPermitidoViewRoute : (context) => NoPermitido(),
+        CargarDocLicenciasViewRoute : (context) => CargarDocLicencias(),
 
-      BeneficiosViewRoute : (context) => Beneficios(),
+        BeneficiosViewRoute : (context) => Beneficios(),
 
 
 
-    };
-  }*/
+      };
+    }*/
 /*
   static Route<dynamic> generateRoute(RouteSettings settings) {
     if (kDebugMode) {
@@ -123,7 +123,7 @@ class AppRoutes {
       print("Desde routes args.arguments : " + args.arguments.toString());
     }
 
-    switch (settings.name) {
+      switch (settings.name) {
       case AppRoutes.DetalleMensajeViewRoute:
         return buildRoute(args.context, DetalleMensaje(), args, routeType: args.routeType);
 

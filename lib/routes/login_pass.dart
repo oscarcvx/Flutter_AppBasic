@@ -2,6 +2,7 @@ import 'package:basic_app/routes/home_page.dart';
 import 'package:flutter/material.dart';
 
 import '../route_gen/go_route.dart';
+import '../route_gen/routes_config.dart';
 
 
 class LoginPass extends StatefulWidget {
@@ -140,6 +141,7 @@ class _LoginPassState extends State<LoginPass> {
                       InkWell(
                           onTap: () {
                             GoRoute(context).backTo(const HomePage(title: "TEST",),routeEffect: RouteEffect.Fade);
+                            //GoRoute(context).backToNamed(RoutesConfig.home,routeEffect: RouteEffect.Fade);
                           },
                           child: _submitButton()
                       ),
@@ -148,7 +150,8 @@ class _LoginPassState extends State<LoginPass> {
                         alignment: Alignment.centerRight,
                         child: InkWell(
                           onTap: () {
-                            GoRoute(context).to(const HomePage(title: "APPRAISE"),routeEffect: RouteEffect.Fade);
+                            GoRoute(context).replace(const HomePage(title: "APPRAISE"),routeEffect: RouteEffect.Fade);
+                            //GoRoute(context).backToNamed(RoutesConfig.home,routeEffect: RouteEffect.Fade);
                           },
                           child: const Text('Olvidó su contraseña ?',
                               style: TextStyle(

@@ -1,5 +1,6 @@
 library GoRoute;
 
+import 'package:basic_app/route_gen/routes_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,6 @@ enum RouteEffect {
 }
 
 
-
 ///
 ///
 ///
@@ -29,6 +29,7 @@ class GoRoute{
 
   final BuildContext context;
 
+
   //Avanza a la pagina siguiente
   ///
   /// Coloca en la pila la nueva pagina
@@ -36,6 +37,12 @@ class GoRoute{
     final RouteArguments vArgs = RouteArguments(context,args,routeEffect: routeEffect);
     final RouteSettings settings = RouteSettings(arguments: vArgs);
     await Navigator.push(context,_generateRoute(settings,route));
+  }
+
+  Future toNamedX( String route, {Object? args, RouteEffect routeEffect = RouteEffect.MaterialDefault}) async {
+    final RouteArguments vArgs = RouteArguments(context,args,routeEffect: routeEffect);
+    final RouteSettings settings = RouteSettings(arguments: vArgs);
+    await Navigator.of(context).pushNamed(route, arguments: RouteArguments(context, args, routeEffect: routeEffect));
   }
 
   //Retrocede la pagina
@@ -55,12 +62,39 @@ class GoRoute{
     await Navigator.pushAndRemoveUntil(context, _generateRoute(settings,route), (route) => false);
   }
 
+  Future backToNamedX(String route,{Object? args, RouteEffect routeEffect = RouteEffect.MaterialDefault}) async {
+    final RouteArguments vArgs = RouteArguments(context,args,routeEffect: routeEffect);
+    final RouteSettings settings = RouteSettings(arguments: vArgs);
+    //await Navigator.pushAndRemoveUntil(context, _generateRoute(settings,route), (route) => false);
+    await Navigator.of(context).popAndPushNamed(route, arguments: RouteArguments(context, args, routeEffect: routeEffect));
+  }
 
-  Future backTo2(Widget route,{Object? args, RouteEffect routeEffect = RouteEffect.MaterialDefault}) async {
+
+  Future replace(Widget route,{Object? args, RouteEffect routeEffect = RouteEffect.MaterialDefault}) async {
     final RouteArguments vArgs = RouteArguments(context,args,routeEffect: routeEffect);
     final RouteSettings settings = RouteSettings(arguments: vArgs);
     await Navigator.pushReplacement(context, _generateRoute(settings,route));
   }
+
+  Future replaceNamedX(String route,{Object? args, RouteEffect routeEffect = RouteEffect.MaterialDefault}) async {
+    final RouteArguments vArgs = RouteArguments(context,args,routeEffect: routeEffect);
+    final RouteSettings settings = RouteSettings(arguments: vArgs);
+    await Navigator.of(context).popAndPushNamed(route, arguments: RouteArguments(context, args, routeEffect: routeEffect));
+  }
+
+
+ /* void navigateTo(Widget page, String path) {
+    html.window.history.pushState(null, '', path);
+    navigatorKey.currentState!.push(MaterialPageRoute(builder: (context) => page));
+  }*/
+
+  /*static Route<dynamic> generateRoute(RouteSettings settings) {
+    RouteArguments args = settings.arguments as RouteArguments;
+    Map<String, Widget Function(BuildContext)> routes = RoutesConfig().buildRoutes(args.context);
+    Widget widget = routes[settings.name]!(args.context);
+    return _buildRoute(args.context, widget, args, routeType: args.routeEffect);
+  }*/
+
 
   /*Future backTo(Widget route, {Object? args, RouteEffect routeEffect = RouteEffect.MaterialDefault}) async {
     final RouteArguments vArgs = RouteArguments(context,args,routeEffect: routeEffect);
@@ -70,8 +104,6 @@ class GoRoute{
 
     //Navigator.popUntil(context, ModalRoute.withName(route));
   }*/
-
-
 
 
 /*
@@ -127,22 +159,15 @@ Future<Object?> routeGo(BuildContext context, String route, replaceType replacem
 */
 
 
+
 }
+
 
 
 PageRoute _generateRoute(RouteSettings settings,Widget route) {
   RouteArguments args = settings.arguments as RouteArguments;
   return _buildRoute(args.context, route, args, routeType: args.routeEffect);
 }
-
-
-class RouteArguments {
-  Object? arguments;
-  RouteArguments(this.context, this.arguments, {this.routeEffect = RouteEffect.MaterialDefault});
-  final RouteEffect routeEffect;
-  final BuildContext context;
-}
-
 
 PageRoute _buildRoute(BuildContext context, Widget route, RouteArguments args, {RouteEffect routeType = RouteEffect.MaterialDefault}) {
 
@@ -151,6 +176,7 @@ PageRoute _buildRoute(BuildContext context, Widget route, RouteArguments args, {
   if (kDebugMode) {
     print("Desde buildRoute : " + args.arguments.toString());
   }
+
   RouteSettings routeSettings = RouteSettings(arguments: args.arguments);
 
 
@@ -195,10 +221,24 @@ PageRoute _buildRoute(BuildContext context, Widget route, RouteArguments args, {
 }
 
 
+
+
+///
+/// Route Arguments  : Parametros
+///
+
+class RouteArguments {
+  Object? arguments;
+  RouteArguments(this.context, this.arguments, {this.routeEffect = RouteEffect.MaterialDefault});
+  final RouteEffect routeEffect;
+  final BuildContext context;
+}
+
+
+
 ///
 /// Transition Effects
 ///
-
 
 class _ScaleRoute extends PageRouteBuilder {
   final Widget page;
