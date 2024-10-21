@@ -1,4 +1,4 @@
-library GoRoute;
+library GoRouteX;
 
 import 'package:basic_app/route_gen/routes_config.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,11 +21,11 @@ enum RouteEffect {
 
 
 ///
+/// extension RouteGo on BuildContext {
 ///
-///
-class GoRoute{
+class GoRouteX{
 
-  GoRoute(this.context);
+  GoRouteX(this.context);
 
   final BuildContext context;
 

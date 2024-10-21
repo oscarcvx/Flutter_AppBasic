@@ -4,10 +4,11 @@ import '../routes/album_sreen.dart';
 import '../routes/home_page.dart';
 import '../routes/login_pass.dart';
 
-class RoutesConfig {
-  static const String login = '/';
+class RoutesPaths {
+  static const String init = '/';
   static const String home = '/home';
-  static const String album_screen = '/album_screen';
+  static const String login = '/login';
+  static const String album_detail = '/albumDetail';
 
 
 /*

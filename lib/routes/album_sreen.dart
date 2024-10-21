@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../components/music_player_footer.dart';
+
 class AlbumScreen extends StatelessWidget {
   final List<Map<String, String>> tracks = [
     {"title": "Canción del minero", "duration": "4:29"},
@@ -15,6 +17,8 @@ class AlbumScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: MusicPlayerFooter(),
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text('Rock de Raíz'),
       ),

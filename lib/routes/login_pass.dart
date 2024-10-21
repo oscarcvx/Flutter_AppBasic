@@ -1,5 +1,6 @@
 import 'package:basic_app/routes/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../route_gen/go_route.dart';
 import '../route_gen/routes_config.dart';
@@ -140,8 +141,9 @@ class _LoginPassState extends State<LoginPass> {
                       const SizedBox(height: 20),
                       InkWell(
                           onTap: () {
-                            GoRoute(context).backTo(const HomePage(title: "TEST",),routeEffect: RouteEffect.Fade);
+                            //GoRoute(context).backTo(const HomePage(title: "TEST",),routeEffect: RouteEffect.Fade);
                             //GoRoute(context).backToNamed(RoutesConfig.home,routeEffect: RouteEffect.Fade);
+                            context.replace(RoutesPaths.home);
                           },
                           child: _submitButton()
                       ),
@@ -150,8 +152,9 @@ class _LoginPassState extends State<LoginPass> {
                         alignment: Alignment.centerRight,
                         child: InkWell(
                           onTap: () {
-                            GoRoute(context).replace(const HomePage(title: "APPRAISE"),routeEffect: RouteEffect.Fade);
+                            //GoRoute(context).replace(const HomePage(title: "APPRAISE"),routeEffect: RouteEffect.Fade);
                             //GoRoute(context).backToNamed(RoutesConfig.home,routeEffect: RouteEffect.Fade);
+                            context.replace(RoutesPaths.home);
                           },
                           child: const Text('Olvidó su contraseña ?',
                               style: TextStyle(
